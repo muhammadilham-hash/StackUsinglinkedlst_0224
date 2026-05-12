@@ -2,44 +2,78 @@
 
 using namespace std;
 
-class Node {
+//node class representing a single node in the linked list
+class Node
+{
 public:
     int data;
-    Node* next;
+    Node *next;
 
-    Node(int value) {
-        data = value;
-        next = nullptr;
+    Node()
+    {
+        next = NULL;
     }
-};   
-      
-class Stack {
+};
+
+//Stack class
+class stack
+{
 private:
-    Node* top;
+Node *top; // pointer to the top node of the stack
+
 public:
-    Stack() {
-        top = nullptr;
-    }       
-    void push(int value) {
-        Node* newNode = new Node(value);
+    stack()
+    {
+        top = NULL;
+    }
+    int push(int value)
+    {
+        Node *newNode = new Node();
+        newNode->data = value;
         newNode->next = top;
         top = newNode;
-    }
-    
-    void pop() {
-        if (top == nullptr) {
-            cout << "Stack underflow!" << endl;
-            return;
-        }
-        Node* temp = top;
-        top = top->next;
-        delete temp;
+        cout << "Push value: " << value << endl;
+        return value;
     }
 
-    int peek() {
-        if (top == nullptr) {
-            cout << "Stack is empty!" << endl;
-            return -1; // Return -1 to indicate stack is empty
+    // pop operation: Remove the topmost element from the stack
+    void pop()
+    {
+        if (isempty())
+        {
+            cout << "Stack is empty." << endl;
         }
-        return top->data;
+
+        Node *temp = top;
+        top = top->next;
+        cout << "Popped value: " << top->data << endl;
     }
+
+    //peel/top operation: Retrive the value of the topset element without removing 
+    void peek()
+    {
+        if (top == NULL)
+        {
+            cout << "List is empthy." << endl;
+        }
+        else
+        {
+            Node *current = top;
+            while (current != NULL)
+            {
+                cout << current->data << "  " << endl;
+                current = current->next;
+            }
+            cout << endl;
+        
+        } // return the value of the top node
+    }
+
+    //is empthy operation: check of the stack is empthy
+    bool isempty()
+    {
+        return top == NULL; //return true if the top pointer is null, indicatig an empty stack
+    }
+};
+
+int main()
