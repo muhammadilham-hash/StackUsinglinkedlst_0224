@@ -83,3 +83,6 @@ int main()
     int choice = 0;
     int value;
 
+    while (choice !=5)
+    {
+        cout << "1.push\n";
